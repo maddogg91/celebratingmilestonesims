@@ -1,0 +1,17 @@
+{
+  "name": "Celebrating Milestones Inventory Management",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js"
+  },
+  "author": "Maddogg",
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "path": "^0.12.7"
+  }
+}

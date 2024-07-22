@@ -1,0 +1,485 @@
+:root {
+    --primary-color: #00cc99;
+    --secondary-color: #003366;
+    --text-color: #333333;
+    --background-color: #f0f0f0;
+    --card-background: rgba(255, 255, 255, 0.8);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --button-color: var(--primary-color);
+    --button-text: #ffffff;
+    --neumorphic-light: rgba(255, 255, 255, 0.5);
+    --neumorphic-dark: rgba(0, 0, 0, 0.1);
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --danger-color: #f44336;
+}
+
+.dark-mode {
+    --text-color: #ffffff;
+    --background-color: #1a1a2e;
+    --card-background: rgba(255, 255, 255, 0.1);
+    --card-border: rgba(255, 255, 255, 0.2);
+    --neumorphic-light: rgba(255, 255, 255, 0.05);
+    --neumorphic-dark: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-container {
+    display: flex;
+    max-width: 1800px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.glassmorphic {
+    background: var(--card-background);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px var(--neumorphic-dark), -4px -4px 10px var(--neumorphic-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.logo svg {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.menu-item i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.menu-item:hover, .menu-item.active {
+    background: var(--button-color);
+    color: var(--button-text);
+    box-shadow: 3px 3px 6px var(--neumorphic-dark), -3px -3px 6px var(--neumorphic-light);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 60px;
+}
+
+.breadcrumb {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    padding: 5px 15px;
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.search-container input {
+    border: none;
+    background: transparent;
+    margin-left: 10px;
+    font-size: 16px;
+    color: var(--text-color);
+    width: 100%;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle, .notification-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.user-profile {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.content-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.block {
+    display: none;
+}
+
+.block.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.quick-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    padding: 10px 15px;
+    margin-right: 10px;
+    background-color: var(--button-color);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.dashboard-grid, .inventory-grid, .event-grid, .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 20px;
+    cursor: move;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+}
+
+.drag-handle {
+    cursor: move;
+    float: right;
+    font-size: 20px;
+    opacity: 0.5;
+}
+
+/* POS Styles */
+.pos-container {
+    display: flex;
+    height: calc(100vh - 120px);
+}
+
+.pos-menu {
+    flex: 2;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.pos-actions {
+    flex: 1;
+    padding: 20px;
+    border-left: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.quick-access {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.drink-categories {
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.category-tab {
+    padding: 10px 15px;
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.category-tab.active {
+    background-color: var(--primary-color);
+    color: var(--button-text);
+}
+
+.drink-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.drink-button {
+    padding: 10px;
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.drink-button:hover {
+    background-color: var(--primary-color);
+    color: var(--button-text);
+}
+
+.custom-drink-builder {
+    margin-bottom: 20px;
+}
+
+.current-order {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#orderList {
+    flex-grow: 1;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+#orderList li {
+    padding: 10px;
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#completeOrder, #cancelOrder, #enableCashBar {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+#completeOrder {
+    background-color: var(--success-color);
+    color: white;
+}
+
+#cancelOrder {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+#enableCashBar {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+/* Event Management Styles */
+#eventCalendar {
+    height: 400px;
+}
+
+#createEventForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#createEventForm input, 
+#createEventForm select, 
+#createEventForm button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+}
+
+#createEventForm button {
+    background-color: var(--primary-color);
+    color: var(--button-text);
+    cursor: pointer;
+}
+
+/* Popup Styles */
+#popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popup-container.hidden {
+    display: none;
+}
+
+#popup-content {
+    width: 80%;
+    max-width: 800px;
+    max-height: 80%;
+    overflow-y: auto;
+    padding: 20px;
+    position: relative;
+}
+
+#close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+#popup-chart-container {
+    width: 100%;
+    height: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .sidebar.collapsed {
+        height: 60px;
+    }
+
+    .main-content {
+        height: calc(100vh - 60px);
+    }
+
+    .pos-container {
+        flex-direction: column;
+    }
+
+    .pos-menu, .pos-actions {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .search-container {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .user-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dashboard-grid, .inventory-grid, .event-grid, .revenue-grid {
+        grid-template-columns: 1fr;
+    }
+}
